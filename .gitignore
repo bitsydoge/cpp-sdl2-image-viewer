@@ -16,3 +16,9 @@ installer\.ico
 ColdViewer\.rc
 
 favicon\.ico
+
+cmake-build-debug/
+
+\.idea/
+
+*.bin

@@ -5,31 +5,6 @@
 #include <SDL2/SDL_ttf.h>
 #include <iostream>
 
-int initVid(SDL_Window **window, SDL_Renderer **render, int w, int h) {
-	if (0 != SDL_Init(SDL_INIT_VIDEO))
-	{
-		fprintf(stderr, "Erreur SDL_Init : %s \n", SDL_GetError());
-		return -1;
-	}
-	if (0 != SDL_CreateWindowAndRenderer(w, h, SDL_WINDOW_BORDERLESS, window, render))
-	{
-		fprintf(stderr, "Erreur SDL_CreateWindowAndRenderer : %s \n", SDL_GetError());
-		return -1;
-	}
-
-	return 0;
-}
-
-
-int clearWithColor(SDL_Renderer *render, int r, int g, int b, int a)
-{
-	if (SDL_SetRenderDrawColor(render, r, g, b, a) < 0)
-		return -1;
-	if (SDL_RenderClear(render) < 0)
-		return -1;
-	return 0;
-}
-
 SDL_Texture *imgToTex(const char path[], SDL_Renderer *render)
 {
 	SDL_Surface *tmp = nullptr;
@@ -93,7 +68,7 @@ void texToRender(SDL_Texture* tex, SDL_Renderer *render, int coef, int x, int y)
 
 void texToRenderPart(SDL_Texture* tex, SDL_Renderer *render, SDL_Rect *rect1, SDL_Rect *rect2)
 {
-	// RECT1 = Qu'est ce qui est selectioné sur la texture XY et WH
-	// RECT2 = Ou est placé sur le render la texture et sa taille (déforme)
+	// RECT1 = Qu'est ce qui est selectionï¿½ sur la texture XY et WH
+	// RECT2 = Ou est placï¿½ sur le render la texture et sa taille (dï¿½forme)
 	SDL_RenderCopy(render, tex, rect1, rect2);
 }
