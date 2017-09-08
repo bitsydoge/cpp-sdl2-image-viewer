@@ -3,6 +3,9 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
 
+// CLASS CORE
+//////////////////////////////////////////////////
+
 class Core
 {
 private:
@@ -10,17 +13,24 @@ private:
 
 public:
     std::string path(){return programPath;};
-    void sdl_init()
-    {
-        SDL_Init(SDL_INIT_EVERYTHING);
-        TTF_Init();
-    }
-    void sdl_quit()
-    {
-        TTF_Quit();
-        SDL_Quit();
-    }
+    Core();
+    ~Core();
 };
+
+Core::Core(void)
+{
+    programPath = SDL_GetBasePath();
+    SDL_Init(SDL_INIT_EVERYTHING);
+    TTF_Init();
+}
+Core::~Core()
+{
+    TTF_Quit();
+    SDL_Quit();
+}
+
+// CLASS WINDOW
+//////////////////////////////////////////////
 
 class Window
 {
@@ -33,15 +43,35 @@ private:
 public:
     int getWidth(){return width;}
     int getHeight(){return height;}
-    int clearWithColor(int r, int g, int b, int a)
+    void clear()
     {
-        if (SDL_SetRenderDrawColor(render, r, g, b, a) < 0)
-            return -1;
-        if (SDL_RenderClear(render) < 0)
-            return -1;
-        return 0;
+        SDL_RenderClear(render);
     }
+    // Must be called only once
+    void createWindow(int w, int h)
+    {
+        SDL_CreateWindowAndRenderer(w, h, SDL_WINDOW_RESIZABLE, &window, &render);
+        width = w; height = h;
+    }
+
+    void renderDraw()
+    {
+        SDL_SetRenderDrawColor(render, 200,34,65,255);
+        SDL_RenderPresent(render);
+    }
+
+    Window();   // This is the constructor
+
 };
+
+Window::Window(void)
+{
+    SDL_SetRenderDrawColor(render,200,60,100,0);
+    std::cout << "HELLO" << std::endl;
+}
+
+// CLASS IMAGE
+//////////////////////////////////////////////////
 
 class Image
 {
@@ -54,7 +84,15 @@ public:
     int getWidth(){return width;}
     int getHeight(){return height;}
     int getZoom(){return zoom;}
+
+    Image();
+
 };
+
+Image::Image()
+{
+
+}
 
 class Input
 {
@@ -142,20 +180,33 @@ public:
         }
     }
 
-    void inputInit(Input *INPUT)
+    void inputReset()
     {
-        memset(INPUT, 0, sizeof(Input));
+        memset(this, 0, sizeof(Input));
     }
+
+    Input();
 };
+
+Input::Input()
+{
+    inputReset();
+}
+
+///////// MAIN ///////////
+//////////////////////////
 
 int main(int argc, char **argv)
 {
     Core core; Window window; Image image; Input input;
-    core.sdl_init();
+    window.createWindow(800, 480);
 
+    while(!input.key[SDL_SCANCODE_ESCAPE] && !input.quit)
+    {
+        window.clear();
+        input.inputUpdate();
+        window.renderDraw();
+    }
 
-    input.inputUpdate();
-
-    core.sdl_quit();
     return 0;
 }
