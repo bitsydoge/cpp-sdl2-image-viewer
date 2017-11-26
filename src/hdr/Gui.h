@@ -1,8 +1,8 @@
 ﻿#pragma once
 #include <SDL2/SDL.h>
 #include "Observer.h"
-#include "../../ScreenEvent.h"
-#include "../../ColdEventDispatcher.h"
+#include "ScreenEvent.h"
+#include "ColdEventDispatcher.h"
 
 class Gui : 
 	public Observer<ScreenEvent>

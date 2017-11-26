@@ -1,6 +1,6 @@
 #include "hdr/Input.h"
-#include "../ColdEventDispatcher.h"
-#include "../Observable.h"
+#include "hdr/ColdEventDispatcher.h"
+#include "hdr/Observable.h"
 #include <cstring>
 #include "hdr/Gui.h"
 

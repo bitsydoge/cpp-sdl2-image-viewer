@@ -1,6 +1,6 @@
 #pragma once
 #include <SDL2/SDL.h>
-#include "../../ColdEventDispatcher.h"
+#include "ColdEventDispatcher.h"
 
 class Input
 {

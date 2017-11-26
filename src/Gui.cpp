@@ -3,8 +3,8 @@
 #include "hdr/Texture.h"
 #include <functional>
 #include "hdr/Window.h"
-#include "../Observable.h"
-#include "../ColdEventDispatcher.h"
+#include "hdr/Observable.h"
+#include "hdr/ColdEventDispatcher.h"
 #include <iostream>
 
 Gui::Gui(ColdEventDispatcher& ced) :

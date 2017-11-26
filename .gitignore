@@ -5,12 +5,6 @@ Debug/
 
 Release/
 
-*.vcxproj
-
-*.filters
-
-*.user
-
 installer\.ico
 
 ColdViewer\.rc
@@ -22,3 +16,5 @@ cmake-build-debug/
 \.idea/
 
 *.bin
+
+\.vs/
