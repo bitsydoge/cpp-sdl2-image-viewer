@@ -5,14 +5,10 @@ Debug/
 
 Release/
 
-*.vcxproj
-
-*.filters
-
-*.user
-
 installer\.ico
 
 ColdViewer\.rc
 
 favicon\.ico
+
+\.vs/
