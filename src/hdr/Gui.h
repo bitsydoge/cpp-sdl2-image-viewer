@@ -7,6 +7,7 @@
 class Gui : 
 	public Observer<ScreenEvent>
 {
+	SDL_Texture *texture_handle;
 	SDL_Color WHITE = { 255, 255, 255 };
 	int windowWidth;
 	int windowHeight;
@@ -15,6 +16,7 @@ class Gui :
 public:
 	Gui(ColdEventDispatcher& ced);
 	~Gui();
-	void affichage_gui(SDL_Renderer *render, SDL_Texture *gui, const char nom_du_fichier[]);
+	void texture_load(SDL_Texture *texture);
+	void affichage_gui(SDL_Renderer *render, const char nom_du_fichier[]);
 
 };

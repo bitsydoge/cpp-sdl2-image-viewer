@@ -12,13 +12,12 @@ int main(int argc, char **argv)
 	se.wHeight = core.window.getHeight();
 	core.ced.notifyObservers(se);
 
-	SDL_Texture *gui = imgToTex("img/gui.bmp", core.window.getRenderer());
-
+	core.gui.texture_load(imgToTex("img/gui.bmp", core.window.getRenderer()));
 	while(!core.input.key[SDL_SCANCODE_ESCAPE] && !core.input.quit)
 	{
 		core.window.clear();
 		core.input.inputUpdate();
-		core.gui.affichage_gui(core.window.getRenderer(), gui, "YO");
+		core.gui.affichage_gui(core.window.getRenderer(), "YO");
 		core.window.renderDraw();
 	}
 	return 0;

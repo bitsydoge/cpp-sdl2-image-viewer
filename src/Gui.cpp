@@ -23,7 +23,12 @@ bool Gui::onScreenEvent(ScreenEvent& screenEvent) {
 	return true;
 }
 
-void Gui::affichage_gui(SDL_Renderer *render, SDL_Texture *gui, const char nom_du_fichier[])
+void Gui::texture_load(SDL_Texture *texture)
+{
+	texture_handle = texture;
+}
+
+void Gui::affichage_gui(SDL_Renderer *render, const char nom_du_fichier[])
 {
 	SDL_Rect rect1 = { 0 }; SDL_Rect rect2 = { 0 };
 
@@ -33,16 +38,16 @@ void Gui::affichage_gui(SDL_Renderer *render, SDL_Texture *gui, const char nom_d
 	for (int i = 0; i < windowWidth; i++)
 	{
 		rect2 = { 0,0,i,32 };
-		texToRenderPart(gui, render, &rect1, &rect2);
+		texToRenderPart(texture_handle, render, &rect1, &rect2);
 	}
 
 	// Gauche
 	rect1 = { 0,0,3,32 }; 	rect2 = { 0,0,3,32 };
-	texToRenderPart(gui, render, &rect1, &rect2);
+	texToRenderPart(texture_handle, render, &rect1, &rect2);
 
 	// Droite
 	rect1 = { 29,0,3,32 }; 	rect2 = { windowWidth - 35,0,3,32 };
-	texToRenderPart(gui, render, &rect1, &rect2);
+	texToRenderPart(texture_handle, render, &rect1, &rect2);
 
 
 	// // // // // // // // // // // // // // // // // // // // // // // //
@@ -54,16 +59,16 @@ void Gui::affichage_gui(SDL_Renderer *render, SDL_Texture *gui, const char nom_d
 	for (int i = 0; i < windowWidth; i++)
 	{
 		rect2 = { 0,windowHeight + 32,i,32 };
-		texToRenderPart(gui, render, &rect1, &rect2);
+		texToRenderPart(texture_handle, render, &rect1, &rect2);
 	}
 
 	// Gauche
 	rect1 = { 0,0,3,32 }; 	rect2 = { 0,windowHeight + 32,3,32 };
-	texToRenderPart(gui, render, &rect1, &rect2);
+	texToRenderPart(texture_handle, render, &rect1, &rect2);
 
 	// Droite
 	rect1 = { 29,0,3,32 }; 	rect2 = { windowWidth - 3,windowHeight + 32,3,32 };
-	texToRenderPart(gui, render, &rect1, &rect2);
+	texToRenderPart(texture_handle, render, &rect1, &rect2);
 
 	// // // // // // // // // // //
 
@@ -88,5 +93,5 @@ void Gui::affichage_gui(SDL_Renderer *render, SDL_Texture *gui, const char nom_d
 	// //
 	// Close button
 	rect1 = { 32,0,32,32 }; 	rect2 = { windowWidth - 32,0,32,32 };
-	texToRenderPart(gui, render, &rect1, &rect2);
+	texToRenderPart(texture_handle, render, &rect1, &rect2);
 }
